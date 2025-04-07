@@ -27,11 +27,6 @@ pipeline {
                 sh 'sleep 5'
             }
         }
-        stage('super_user') {
-            steps {
-                sh 'sudo su'
-            }
-        }
         stage('docker_build') {
             steps {
                 sh 'docker build -t devops-project:latest1 .'
