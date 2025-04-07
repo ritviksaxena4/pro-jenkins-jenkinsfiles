@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('GIT clone the ansible eks  tf code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ritviksaxena4/pro-ansible-eks-tf.git'
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('Terraform plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+         stage('User input for terraform') {
+            steps {
+                input cancel: 'NO', message: 'Do you want to build the Ansible and EKS cluster??', ok: 'YES, Go Ahead'
+            }
+        }
+        stage('Terraform apply') {
+            steps {
+                sh 'terraform apply --auto-approve'
+            }
+        }
+    }
+}
