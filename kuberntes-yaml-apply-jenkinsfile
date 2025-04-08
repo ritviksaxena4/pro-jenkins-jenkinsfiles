@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Git clone the yaml files') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ritviksaxena4/pro-kubernetes-yaml.git'
+            }
+        }
+        stage('sleep 5') {
+            steps {
+                sh 'sleep 5'
+            }
+        }
+        stage('Apply the deployment file') {
+            steps {
+                sh 'kubectl apply -f deployment.yaml'
+            }
+        }
+        stage('sleep 5 for deployment.yaml') {
+            steps {
+                sh 'sleep 5'
+            }
+        }
+        stage('Apply the service.yaml file') {
+            steps {
+                sh 'kubectl apply -f service.yaml'
+            }
+        }
+    }
+}
