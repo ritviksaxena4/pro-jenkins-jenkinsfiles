@@ -12,6 +12,16 @@ pipeline {
                 sh 'sleep 5'
             }
         }
+        stage('configuring eksctl') {
+            steps {
+                sh 'aws eks update-kubeconfig --name my-eks-cluster --region us-east-1'
+            }
+        }
+        stage('sleep 5 for configuring eksctl') {
+            steps {
+                sh 'sleep 5'
+            }
+        }
         stage('Apply the deployment file') {
             steps {
                 sh 'kubectl apply -f deployment.yaml'
