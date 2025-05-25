@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('git clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/ritviksaxena4/pro-app-code-repo.git'
+                git branch: 'main', url: 'https://github.com/ritviksaxena4/pro-app-code-2.git'
             }
         }
 
